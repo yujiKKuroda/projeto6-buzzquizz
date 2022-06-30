@@ -47,6 +47,7 @@ body {
 
 /*Texto dentro do form*/
 ::placeholder {		
+    margin-left: 23.16px;
     font-style: italic;
     color: #bababa;
 }
@@ -75,7 +76,32 @@ body {
 
 }
 
-.paginaInicial{
+/*Botão do menu inferior*/
+.confirmacao {
+    width: 370px;
+    height: 54px;
+    justify-content: center;
+    align-items: center;
+    background-color: #ec362d;
+    font-size: 21;
+    color: #fff5f4;
+    border: none;
+    border-radius: 15px;
+}
+
+/*Menu inferior quando finalizado*/
+.finalizar {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 92px;
+    background-color: white;
+    justify-content: center;
+    bottom: 0;
+    z-index: 4;
+}
+
+.paginaInicial {
     width: 80%;
     display: flex;
     justify-content: space-around;
