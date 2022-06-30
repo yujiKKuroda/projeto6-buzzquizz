@@ -17,6 +17,24 @@ function ehURL() {
     return true;
 }
 
+// Função que imprime a primeira tela
+function criarComeco() {
+    let corpo = document.querySelector(".corpo");
+    corpo.classList.add("criacao");
+    corpo.innerHTML = ""
+    corpo.innerHTML += `
+    <p class="tituloCriacao">Comece pelo começo</p>
+    <form class="prompt basico">
+        <input type="text" id="tituloQuizz" name="tituloQuizz" placeholder="Título do seu quizz" />
+        <input type="text" id="URLQuizz" name="URLQuizz" placeholder="URL da imagem do seu quizz" />
+        <input type="text" id="quantPerguntas" name="quantPerguntas"
+            placeholder="Quantidade de perguntas do quizz" />
+        <input type="text" id="quantNiveis" name="quantNiveis" placeholder="Quantidade de níveis do quizz" />
+    </form>
+    <button class="confirmacao" onclick="confirmarComeco()">Prosseguir pra criar perguntas</button>
+    `
+}
+
 // Função que valida todos os dados da primeira tela
 function validarComeco() {
     let valido = true;
@@ -51,3 +69,5 @@ function confirmarComeco() {
         alert("ERRO: Dados inválidos! Por favor, digite novamente");
     }
 }
+
+criarComeco();
