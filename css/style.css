@@ -68,5 +68,57 @@ body {
     width: 600px;
     height: 256px;
 }
+.titulo{
+    width: 80%;
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.paginaInicial{
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 12px auto 0 auto;
+    background-color: crimson;
+
+}
+.seusQuizzes{
+    width: 340px;
+    border-radius: 5px;
+    margin-left: 15px;
+}
+.seusQuizzes p{
+    margin-bottom: 13px;
+    font: Roboto;
+    font-weight: 700;
+    font-size: 20px;
+}
+.todosQuizzes img{ 
+    width: 340px;
+    height: 181px;
+    border-radius: 5px;
+  
+}
+.todosQuizzes{
+    position: relative;
+    margin-bottom: 19px;
+
+}
+.tituloQuizz{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+}
+.todosQuizzes p{
+    margin-bottom: 13px;
+    font: Roboto;
+    font-weight: 400;
+    font-size: 19px;
+    color: #ffffff;
+    margin-left: 18px;
+}
 
 @media (max-width: 736px) {}
