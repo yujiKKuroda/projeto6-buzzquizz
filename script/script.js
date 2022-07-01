@@ -1,2 +1,1 @@
-criarComeco();
 buscarQuizzes();

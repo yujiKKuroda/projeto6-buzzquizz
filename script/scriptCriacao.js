@@ -17,6 +17,10 @@ function ehURL() {
     return true;
 }
 
+function ehCor() {
+    return true;
+}
+
 // Função que imprime a primeira tela
 function criarComeco() {
     let corpo = document.querySelector(".corpo");
@@ -55,8 +59,17 @@ function validarComeco() {
     return false;
 }
 
+function validarPerguntas() {
+    let valido = true;
+}
+
 // Função que imprime a segunda tela
 function criarPerguntas() {
+    alert("Tudo certo!");
+}
+
+// Função que imprime a segunda tela
+function criarNiveis() {
     alert("Tudo certo!");
 }
 
@@ -65,6 +78,15 @@ function confirmarComeco() {
     let resposta = validarComeco();
     if (resposta === true) {
         criarPerguntas();
+    } else {
+        alert("ERRO: Dados inválidos! Por favor, digite novamente");
+    }
+}
+
+function confirmarPerguntas() {
+    let resposta = validarPerguntas();
+    if (resposta === true) {
+        criarNiveis();
     } else {
         alert("ERRO: Dados inválidos! Por favor, digite novamente");
     }
