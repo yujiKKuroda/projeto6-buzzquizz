@@ -4,7 +4,9 @@
     font-family: 'Roboto', sans-serif;
 }
 
+
 body {
+    font-family: 'Roboto', sans-serif;
     background-color: #e5e5e5;
     display: flex;
     flex-direction: column;
@@ -40,8 +42,6 @@ body {
     justify-content: center;
     align-items: center;
 }
-
-
 .criacao input[type=text] {
     width: 564px;
     height: 46px;

@@ -1,7 +1,7 @@
 let quizzes;
 
 
-buscarQuizzes();
+
 function buscarQuizzes (){
     const promessa = axios.get(
         "https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes"
@@ -98,5 +98,5 @@ function renderizarQuizzes(){
             </div>`   
           });
 
-}
+    }
 }
