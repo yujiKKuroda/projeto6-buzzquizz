@@ -69,5 +69,3 @@ function confirmarComeco() {
         alert("ERRO: Dados inválidos! Por favor, digite novamente");
     }
 }
-
-criarComeco();
