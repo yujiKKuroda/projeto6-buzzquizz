@@ -101,7 +101,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    margin-top: 27px;
     padding: 21px 20px 24px 16px;
 }
 
@@ -110,7 +109,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    margin-top: 36px;
     padding: 27px 19px 27px 17px;
 }
 
@@ -132,21 +130,23 @@ body {
 .doze {
     line-height: 12px;
 }
-
 .quatorze {
     line-height: 14px;
 }
-
 .vinteequatro {
     line-height: 24px;
 }
-
+.vinteesete {
+    line-height: 27px;
+}
 .vinteeoito {
     line-height: 28px;
 }
-
 .trintaedois {
     line-height: 32px;
+}
+.trintaeseis {
+    line-height: 36px;
 }
 
 /*Botão de confirmação*/
