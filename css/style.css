@@ -285,13 +285,15 @@ body {
   
 }
 .todosQuizzes{
-    word-wrap: break-word;
+    
     border-radius: 5px;
     position: relative;
     margin-bottom: 19px;
 
 }
 .tituloQuizz{
+    flex-wrap: wrap;
+    word-wrap: break-word; 
     position: absolute;
     left: 0;
     bottom: 0;
@@ -304,7 +306,6 @@ body {
     font-size: 19px;
     color: #ffffff;
     margin-left: 18px;
-    word-wrap: break-word;
 }
 /* estilos da tela 2 */
 
@@ -315,24 +316,26 @@ body {
     height: 227px;
     display: flex;
     justify-content: center;
-align-items: center;
-text-align: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
 }
 .topoResponderQuizz img{
     width: 100%;
     margin-top: 69px;
     margin-bottom: 70px;
     height: 227px;
-    display: flex;
-    justify-content: center;
-align-items: center;
-text-align: center;
+    text-align: center;
 
+}
+.topoResponderQuizz p{
+    color: #EC362D;
+    position: absolute;
+    bottom: 0;
+    left: 0%;
 }
 .topoCriarQuizz p{
     color: #ffffff;
-    
-
 }
 .questaoQuizz{
     margin: auto;
@@ -370,7 +373,7 @@ text-align: center;
     background-color: #D5D5D5;
     opacity: 0.3;
 }
-.resposta-errada  p{
+.resposta-incorreta  p{
     color: #FF4B4B;
 }
 .resposta-correta p{

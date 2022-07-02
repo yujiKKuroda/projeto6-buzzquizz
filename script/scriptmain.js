@@ -1,6 +1,6 @@
 let quizzes;
 let dadosDoQuizz;
-let acertos;
+let acertos=0;
 
 function buscarQuizzes (){
     const promessa = axios.get(
@@ -21,7 +21,6 @@ let quizzExemplo = {
 const arrayQuizzes = [];
 
 function exibirQuizzes(resposta){
-    console.log(resposta);
     quizzes=resposta.data;
     renderizarQuizzes();
 }
@@ -104,21 +103,19 @@ function renderizarQuizzes(){
     
 }
 function iniciarQuizz(id){
-
-    console.log("entrei")
     const promessa = axios.get(`
     https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`
     );
     promessa.then(irParaPaginaQuizz);
 }
 function irParaPaginaQuizz(resposta){
-    console.log(resposta);
     dadosDoQuizz = resposta.data;
     document.querySelector(".pagina").innerHTML='';
     renderizarDadosDoQuizz(dadosDoQuizz);
 }
 
 function renderizarDadosDoQuizz(resposta){
+    console.log(resposta)
 
     const paginaQuizz = document.querySelector(".pagina");
     
@@ -129,28 +126,29 @@ function renderizarDadosDoQuizz(resposta){
         </div>
     `
     resposta.questions.forEach(pergunta => {
+        let respostasString = '';
+        console.log(pergunta.answers);
+        const respostasEmbaralhadas = pergunta.answers;
+        respostasEmbaralhadas.sort(comparador);
+        console.log(respostasEmbaralhadas);
+        respostasEmbaralhadas.forEach(resposta => {
+            respostasString+= `
+                <div 
+                    class="opcaoResposta ${resposta.isCorrectAnswer ? "resposta-certa" : "resposta-errada" }" 
+                    onclick="VerificarResposta(${resposta.isCorrectAnswer}, this)" 
+                >
+                    <img src="${resposta.image}" alt="">
+                    <p>${resposta.text}</p>
+                </div>
+            `    // Aqui em cima, utilizei ternário, " resposta esta correta (?), adiciono a classe resposta-certa, caso contrario(:) adiciono resposta-errada "
+        });
         paginaQuizz.innerHTML+= `
             <div class="questaoQuizz">
                 <div class="perguntaQuizz"> 
                     <p>${pergunta.title}</p>
                 </div>
                 <div class="todas-opcoes-resposta">
-                    <div class="opcaoResposta" onclick="VerificarResposta(${pergunta.answers[0].isCorrectAnswer}, this)" >
-                        <img src="${pergunta.answers[0].image}" alt="">
-                        <p>${pergunta.answers[0].text}</p>
-                    </div>
-                    <div class="opcaoResposta" onclick="VerificarResposta(${pergunta.answers[1].isCorrectAnswer}, this)" >
-                        <img src="${pergunta.answers[1].image}" alt="">
-                        <p>${pergunta.answers[1].text}</p>
-                    </div>
-                    <div class="opcaoResposta" onclick="VerificarResposta(${pergunta.answers[2]?.isCorrectAnswer}, this)" >
-                        <img src="${pergunta.answers[2]?.image}" alt="">
-                        <p>${pergunta.answers[2]?.text}</p>
-                    </div>
-                    <div class="opcaoResposta" onclick="VerificarResposta(${pergunta.answers[3]?.isCorrectAnswer}, this)" >
-                        <img src="${pergunta.answers[3]?.image}" alt="">
-                        <p>${pergunta.answers[3]?.text}</p>
-                    </div>
+                    ${respostasString}
                 </div>
             </div> 
         `
@@ -159,12 +157,11 @@ function renderizarDadosDoQuizz(resposta){
     
 }
 function VerificarResposta(ehRespostaCerta, respostaClicada){
-    console.log("entrei na resposta", ehRespostaCerta, respostaClicada)
     if (ehRespostaCerta){
         acertos++;
     }
+    const questaoAtual = respostaClicada.parentNode.parentNode;
     const containerRespostas = respostaClicada.parentNode;
-    console.log(containerRespostas, "aqui o eu to cansado")
 
     const todasAsRespostas = containerRespostas.querySelectorAll(".opcaoResposta");
 
@@ -172,10 +169,33 @@ function VerificarResposta(ehRespostaCerta, respostaClicada){
         if(resposta.innerHTML !== respostaClicada.innerHTML){
             resposta.classList.add("resposta-nao-selecionada");
         }
-       
     });
-    /* respostaClicada.classList.add() */
+    todasAsRespostas.forEach((resposta)=> {
+        resposta.onclick=null;
+        if(resposta.classList.contains("resposta-certa")){
+            resposta.classList.add("resposta-correta");
+        }
+        else { 
+            resposta.classList.add("resposta-incorreta")
+        }
+    });
+    
+    let questoesQuizz = document.querySelectorAll(".questaoQuizz");
+    let proximaQuestao;
+    questoesQuizz.forEach((questao, index)=> { 
+        if(index !== questoesQuizz.length-1){
+            if(questao.innerHTML === questaoAtual.innerHTML){
+                proximaQuestao = questoesQuizz[index+1];
+            } 
+        }
+    });
 
-        
-
+    setTimeout(()=> {
+        proximaQuestao.scrollIntoView()
+    }, 2000);
 }
+function comparador() { 
+	return Math.random() - 0.5; 
+}
+
+
