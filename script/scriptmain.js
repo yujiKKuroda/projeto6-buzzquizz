@@ -1,6 +1,7 @@
 let quizzes;
 let dadosDoQuizz;
-let acertos=0;
+let acertosUsuario=0;
+let transformarPorcentagem=0;
 
 function buscarQuizzes (){
     const promessa = axios.get(
@@ -34,7 +35,7 @@ function renderizarQuizzes(){
             <div class="criarQuizzInformacao">
                 <p>Você não criou nenhum quizz ainda :(</p>
             </div>
-            <div class="criarQuizzBotao">
+            <div class="criarQuizzBotao" onclick="criarComeco()">
                 <p>Criar Quizz</p>
             </div>
         </div>
@@ -103,48 +104,56 @@ function renderizarQuizzes(){
     
 }
 function iniciarQuizz(id){
+    console.log("estou re-iniciando quizz");
+    console.log(id)
     const promessa = axios.get(`
-    https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`
+    https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes/${id}`
     );
     promessa.then(irParaPaginaQuizz);
 }
 function irParaPaginaQuizz(resposta){
+    console.log("estou re-iniciando irParaPaginaQuizz");
+    console.log(resposta, " resposta API")
     dadosDoQuizz = resposta.data;
     document.querySelector(".pagina").innerHTML='';
     renderizarDadosDoQuizz(dadosDoQuizz);
 }
 
-function renderizarDadosDoQuizz(resposta){
-    console.log(resposta)
-
+function renderizarDadosDoQuizz(dadosDoQuizz){
+    console.log("estou re-iniciando renderizarDadosDoQuizz");
+    console.log(dadosDoQuizz)
+    transformarPorcentagem=0; 
     const paginaQuizz = document.querySelector(".pagina");
+    paginaQuizz.innerHTML=""
     
     paginaQuizz.innerHTML= `  
         <div class="topoResponderQuizz">
-        <img src="${resposta.image} alt="">
-            <p> ${resposta.title}</p>
+        <div class="imagemPositionTopo"></div>
+        <img src="${dadosDoQuizz.image} alt="">
+            <p>${dadosDoQuizz.title}</p>
         </div>
     `
-    resposta.questions.forEach(pergunta => {
+    dadosDoQuizz.questions.forEach(pergunta => {
         let respostasString = '';
-        console.log(pergunta.answers);
+    
         const respostasEmbaralhadas = pergunta.answers;
         respostasEmbaralhadas.sort(comparador);
-        console.log(respostasEmbaralhadas);
+    
         respostasEmbaralhadas.forEach(resposta => {
             respostasString+= `
                 <div 
                     class="opcaoResposta ${resposta.isCorrectAnswer ? "resposta-certa" : "resposta-errada" }" 
-                    onclick="VerificarResposta(${resposta.isCorrectAnswer}, this)" 
+                    onclick="VerificarResposta(${resposta.isCorrectAnswer}, this, dadosDoQuizz)" 
                 >
                     <img src="${resposta.image}" alt="">
                     <p>${resposta.text}</p>
                 </div>
             `    // Aqui em cima, utilizei ternário, " resposta esta correta (?), adiciono a classe resposta-certa, caso contrario(:) adiciono resposta-errada "
         });
+
         paginaQuizz.innerHTML+= `
             <div class="questaoQuizz">
-                <div class="perguntaQuizz"> 
+                <div class="perguntaQuizz" style="background-color:${pergunta.color}"> 
                     <p>${pergunta.title}</p>
                 </div>
                 <div class="todas-opcoes-resposta">
@@ -153,12 +162,15 @@ function renderizarDadosDoQuizz(resposta){
             </div> 
         `
     });
+
+    paginaQuizz.innerHTML+= '<div class="final-da-pagina"></div>'
     
     
 }
-function VerificarResposta(ehRespostaCerta, respostaClicada){
+function VerificarResposta(ehRespostaCerta, respostaClicada, dadosDoQuizz){
+    console.log("estou re-iniciando VerificarResposta");
     if (ehRespostaCerta){
-        acertos++;
+        acertosUsuario++;
     }
     const questaoAtual = respostaClicada.parentNode.parentNode;
     const containerRespostas = respostaClicada.parentNode;
@@ -166,6 +178,7 @@ function VerificarResposta(ehRespostaCerta, respostaClicada){
     const todasAsRespostas = containerRespostas.querySelectorAll(".opcaoResposta");
 
     todasAsRespostas.forEach((resposta) => {
+
         if(resposta.innerHTML !== respostaClicada.innerHTML){
             resposta.classList.add("resposta-nao-selecionada");
         }
@@ -181,19 +194,113 @@ function VerificarResposta(ehRespostaCerta, respostaClicada){
     });
     
     let questoesQuizz = document.querySelectorAll(".questaoQuizz");
-    let proximaQuestao;
+    let proximaQuestao = document.querySelector(".topoResponderQuizz")
+
     questoesQuizz.forEach((questao, index)=> { 
-        if(index !== questoesQuizz.length-1){
-            if(questao.innerHTML === questaoAtual.innerHTML){
+
+        if(questao.innerHTML === questaoAtual.innerHTML){
+            if(index !== questoesQuizz.length-1){
                 proximaQuestao = questoesQuizz[index+1];
-            } 
-        }
+                
+
+                
+            }
+            else{
+                transformarPorcentagem = Math.round((100*acertosUsuario)/(questoesQuizz.length));
+                console.log(acertosUsuario);
+                console.log(transformarPorcentagem);
+                renderizarResultado(dadosDoQuizz);
+                let fimDoQuizz = document.querySelector(".final-da-pagina");
+                proximaQuestao = fimDoQuizz;
+            }
+        } 
+        
     });
 
     setTimeout(()=> {
-        proximaQuestao.scrollIntoView()
+        proximaQuestao.scrollIntoView({behavior:"smooth"})
     }, 2000);
 }
+function renderizarResultado(dadosDoQuizz){
+    console.log(dadosDoQuizz);
+
+        let pagina = document.querySelector(".pagina");
+        let fimDoQuizz = pagina.querySelector(".final-da-pagina");
+
+    if(dadosDoQuizz.levels[0].minValue !== 0){
+        const dadosDoQuizzInvertido = dadosDoQuizz.levels.reverse();
+
+        dadosDoQuizzInvertido.forEach((dadosNiveis) => {
+            if( transformarPorcentagem >=  dadosNiveis.minValue){
+                console.log("ENTREI NO IF DO FIM DO QUIZZ")
+        
+                fimDoQuizz.innerHTML = `
+                    
+                    <div class="fim-do-quizz">
+                    
+                        <div class="resultado-fim-do-quizz">
+                            <p> ${transformarPorcentagem}% ${dadosNiveis.title}</p>
+                        </div>
+                        <div class="imagem-texto-fim-quizz">
+                            <img src="${dadosNiveis.image}" alt="">
+                            <p>${dadosNiveis.text}</p>
+                        </div>
+                    </div>
+                    <div class="reiniciar-quizz" onclick="voltarProTopo(${dadosDoQuizz.id})">
+                        <p>reiniciar-quizz</p>
+                    </div>
+                    <div class="voltar-pagina-inicial" onclick="VoltarPaginaInicial()"><p>Voltar para home</p></div>
+                `
+                return;
+            }
+
+        });
+    }
+    else {
+        dadosDoQuizz.levels.forEach((dadosNiveis) => {
+            if( transformarPorcentagem >=  dadosNiveis.minValue){
+                console.log("ENTREI NO IF DO FIM DO QUIZZ")
+        
+                fimDoQuizz.innerHTML = `
+                    
+                    <div class="fim-do-quizz">
+                    
+                        <div class="resultado-fim-do-quizz">
+                            <p> ${transformarPorcentagem}% ${dadosNiveis.title}</p>
+                        </div>
+                        <div class="imagem-texto-fim-quizz">
+                            <img src="${dadosNiveis.image}" alt="">
+                            <p>${dadosNiveis.text}</p>
+                        </div>
+                    </div>
+                    <div class="reiniciar-quizz" onclick="voltarProTopo(${dadosDoQuizz.id})">
+                        <p>reiniciar-quizz</p>
+                    </div>
+                    <div class="voltar-pagina-inicial" onclick="VoltarPaginaInicial()"><p>Voltar para home</p></div>
+                `
+                return;
+            }
+
+        });
+
+    }
+}
+    function VoltarPaginaInicial(){
+        buscarQuizzes();
+        acertosUsuario = 0;
+        
+        let topoResponderQuizz = document.querySelector(".pagina");
+        setTimeout(()=>{topoResponderQuizz.scrollIntoView({behavior:"smooth"})})
+
+    }
+
+    function voltarProTopo(dados){
+        acertosUsuario=0;
+        iniciarQuizz(dados);
+        let topoResponderQuizz = document.querySelector(".pagina");
+        setTimeout(()=>{topoResponderQuizz.scrollIntoView({behavior:"smooth"})})
+
+    }
 function comparador() { 
 	return Math.random() - 0.5; 
 }
