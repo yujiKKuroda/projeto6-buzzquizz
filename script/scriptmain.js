@@ -233,8 +233,6 @@ function renderizarResultado(dadosDoQuizz){
     let niveis = dadosDoQuizz.levels;
     niveis.sort(ordenador);
 
-    console.log('---------NIVEIS: ', niveis);
-
         niveis.forEach((dadosNiveis) => {
             if( transformarPorcentagem >=  dadosNiveis.minValue){
                 console.log("ENTREI NO IF DO FIM DO QUIZZ")
