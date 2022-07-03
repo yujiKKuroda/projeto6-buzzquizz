@@ -338,6 +338,7 @@ body {
     bottom: 103.5px;
     left: 0;
     z-index: 3;
+    word-break: break-word;
 }
 .imagemPositionTopo{ 
     background-color: black;
@@ -367,6 +368,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    word-break: break-word;
 }
 .perguntaQuizz p{
     font-family: Roboto;

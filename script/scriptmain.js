@@ -168,7 +168,7 @@ function renderizarDadosDoQuizz(dadosDoQuizz){
     
 }
 function VerificarResposta(ehRespostaCerta, respostaClicada, dadosDoQuizz){
-    console.log("estou re-iniciando VerificarResposta");
+
     if (ehRespostaCerta){
         acertosUsuario++;
     }
@@ -180,6 +180,7 @@ function VerificarResposta(ehRespostaCerta, respostaClicada, dadosDoQuizz){
     todasAsRespostas.forEach((resposta) => {
 
         if(resposta.innerHTML !== respostaClicada.innerHTML){
+            console.log("ADICIONEI O BAGULHO");
             resposta.classList.add("resposta-nao-selecionada");
         }
     });
@@ -224,13 +225,17 @@ function VerificarResposta(ehRespostaCerta, respostaClicada, dadosDoQuizz){
 function renderizarResultado(dadosDoQuizz){
     console.log(dadosDoQuizz);
 
-        let pagina = document.querySelector(".pagina");
-        let fimDoQuizz = pagina.querySelector(".final-da-pagina");
 
-    if(dadosDoQuizz.levels[0].minValue !== 0){
-        const dadosDoQuizzInvertido = dadosDoQuizz.levels.reverse();
 
-        dadosDoQuizzInvertido.forEach((dadosNiveis) => {
+    let pagina = document.querySelector(".pagina");
+    let fimDoQuizz = pagina.querySelector(".final-da-pagina");
+
+    let niveis = dadosDoQuizz.levels;
+    niveis.sort(ordenador);
+
+    console.log('---------NIVEIS: ', niveis);
+
+        niveis.forEach((dadosNiveis) => {
             if( transformarPorcentagem >=  dadosNiveis.minValue){
                 console.log("ENTREI NO IF DO FIM DO QUIZZ")
         
@@ -256,35 +261,7 @@ function renderizarResultado(dadosDoQuizz){
 
         });
     }
-    else {
-        dadosDoQuizz.levels.forEach((dadosNiveis) => {
-            if( transformarPorcentagem >=  dadosNiveis.minValue){
-                console.log("ENTREI NO IF DO FIM DO QUIZZ")
-        
-                fimDoQuizz.innerHTML = `
-                    
-                    <div class="fim-do-quizz">
-                    
-                        <div class="resultado-fim-do-quizz">
-                            <p> ${transformarPorcentagem}% ${dadosNiveis.title}</p>
-                        </div>
-                        <div class="imagem-texto-fim-quizz">
-                            <img src="${dadosNiveis.image}" alt="">
-                            <p>${dadosNiveis.text}</p>
-                        </div>
-                    </div>
-                    <div class="reiniciar-quizz" onclick="voltarProTopo(${dadosDoQuizz.id})">
-                        <p>reiniciar-quizz</p>
-                    </div>
-                    <div class="voltar-pagina-inicial" onclick="VoltarPaginaInicial()"><p>Voltar para home</p></div>
-                `
-                return;
-            }
 
-        });
-
-    }
-}
     function VoltarPaginaInicial(){
         buscarQuizzes();
         acertosUsuario = 0;
@@ -305,4 +282,12 @@ function comparador() {
 	return Math.random() - 0.5; 
 }
 
-
+function ordenador (level1, level2) {
+    if ( level1.minValue < level2.minValue ){
+      return -1;
+    }
+    if ( level1.minValue > level2.minValue ){
+      return 1;
+    }
+    return 0;
+  }
