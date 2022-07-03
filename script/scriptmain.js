@@ -125,11 +125,11 @@ function renderizarDadosDoQuizz(dadosDoQuizz){
     transformarPorcentagem=0; 
     const paginaQuizz = document.querySelector(".pagina");
     paginaQuizz.innerHTML=""
-    
+        
     paginaQuizz.innerHTML= `  
         <div class="topoResponderQuizz">
         <div class="imagemPositionTopo"></div>
-        <img src="${dadosDoQuizz.image} alt="">
+        <img src="${dadosDoQuizz.image}" />
             <p>${dadosDoQuizz.title}</p>
         </div>
     `

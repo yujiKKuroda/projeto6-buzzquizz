@@ -22,7 +22,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    z-index: 4;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -252,6 +252,7 @@ body {
     max-width: 1130px;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     flex-wrap: wrap;
     margin: 12px auto 0 auto;
     
@@ -353,7 +354,7 @@ body {
     color: #ffffff;
 }
 .questaoQuizz{
-    margin: auto;
+    margin: 62px auto auto auto;
     background-color: #FAFAFA;
     width:759px ;
     padding: 36.4px;
@@ -411,9 +412,11 @@ body {
 }
 /* ESTILOS FIM DO QUIZZ*/
 .container-resultado{
-    margin-top: 44px
+    margin-top: 44px;
+    width: 100%
 }
 .fim-do-quizz{
+    margin-top: 44px;
     width: 759px;
     background-color: #FFFFFF;
     padding: 18px;
@@ -435,6 +438,7 @@ body {
 .imagem-texto-fim-quizz{
     margin-top: 18px;
     display: flex;
+    width: 100%;
 }
 .imagem-texto-fim-quizz img{
     width: 364px;
@@ -501,6 +505,19 @@ body {
         margin-top: 29px;
     }
     .pagina{
+        width: 100%;
+    }
+    .questaoQuizz{
+        width: 100%;
+    }
+    .todas-opcoes-resposta{
+        width: 100%;
+    }
+    .opcaoResposta{
+        width: 48%;
+
+    }
+    .opcaoResposta img{
         width: 100%;
     }
 
