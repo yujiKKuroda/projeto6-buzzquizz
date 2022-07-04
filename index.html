@@ -22,66 +22,138 @@
         <img src="./img/logo.png" />
     </div>
     <!--Aqui vamos fazer as modificações, por padrão ela estará com a seleção dos quizzes-->
-    <!-- <div class="corpo perguntas">
+    <div class="corpo perguntas">
+
         <p class="tituloCriacao">Crie suas perguntas</p>
         <br class="trintaeseis">
-        <form class="prompt basicoPerguntas">
-            <p class="tituloInterno">Pergunta 1</p>
-            <br class="doze">
-            <input type="text" id="textoPergunta" name="textoPergunta" placeholder="Texto da pergunta" />
-            <input type="text" id="corFundo" name="corFundo" placeholder="Cor de fundo da pergunta" />
-            <br class="vinteeoito">
 
-            <p class="tituloInterno">Resposta correta</p>
-            <br class="vinteequatro">
-            <input type="text" id="correta" name="correta" placeholder="Respota correta" />
-            <input type="text" id="urlCorreta" name="urlCorreta" placeholder="URL da imagem" />
-            <br class="vinteeoito">
+        <div class="1">
+            <div class="escondido perguntasMinimizado">
+                <p class="tituloInterno">Pergunta 1</p>
+                <img src="./img/create.png" onclick="abrirPergunta(this)">
+            </div>
+            <div class="pergunta1">
+                <form class="prompt basicoPerguntas 1">
+                    <p class="tituloInterno">Pergunta 1</p>
+                    <br class="doze">
+                    <input type="text" id="textoPergunta-1" name="textoPergunta-1" placeholder="Texto da pergunta" />
+                    <input type="text" id="corFundo-1" name="corFundo-1" placeholder="Cor de fundo da pergunta" />
+                    <br class="vinteeoito">
 
-            <p class="tituloInterno">Respostas incorretas</p>
-            <br class="quatorze">
-            <input type="text" id="incorreta1" name="incorreta1" placeholder="Resposta incorreta 1" />
-            <input type="text" id="corFundo" name="corFundo" placeholder="URL da imagem 1" />
-            <br class="trintaedois">
-            <input type="text" id="incorreta2" name="incorreta2" placeholder="Resposta incorreta 2" />
-            <input type="text" id="corFundo" name="corFundo" placeholder="URL da imagem 2" />
-            <br class="trintaedois">
-            <input type="text" id="incorreta3" name="incorreta3" placeholder="Resposta incorreta 3" />
-            <input type="text" id="corFundo" name="corFundo" placeholder="URL da imagem 3" />
-        </form>
+                    <p class="tituloInterno">Resposta correta</p>
+                    <br class="vinteequatro">
+                    <input type="text" id="correta-1" name="correta-1" placeholder="Respota correta" />
+                    <input type="text" id="urlCorreta-1" name="urlCorreta-1" placeholder="URL da imagem" />
+                    <br class="vinteeoito">
+
+                    <p class="tituloInterno">Respostas incorretas</p>
+                    <br class="quatorze">
+                    <input type="text" id="incorreta1-1" name="incorreta1-1" placeholder="Resposta incorreta 1" />
+                    <input type="text" id="urlIncorreta1-1" name="urlIncorreta1-1" placeholder="URL da imagem 1" />
+                    <br class="trintaedois">
+                    <input type="text" id="incorreta2-1" name="incorreta2-1" placeholder="Resposta incorreta 2" />
+                    <input type="text" id="urlIncorreta2-1" name="urlIncorreta2-1" placeholder="URL da imagem 2" />
+                    <br class="trintaedois">
+                    <input type="text" id="incorreta3-1" name="incorreta3-1" placeholder="Resposta incorreta 3" />
+                    <input type="text" id="urlIncorreta3-1" name="urlIncorreta3-1" placeholder="URL da imagem 3" />
+                </form>
+            </div>
+        </div>
+
         <br class="vinteequatro">
-        <form class="prompt perguntasMinimizado">
-            <p class="tituloInterno">Pergunta 2</p>
-            <img src="./img/create.png">
-        </form>
+
+        <div class="2">
+            <div class="prompt perguntasMinimizado">
+                <p class="tituloInterno">Pergunta 2</p>
+                <img src="./img/create.png" onclick="abrirPergunta(this)">
+            </div>
+            <div class="pergunta2">
+                <form class="prompt basicoPerguntas 2">
+                    <p class="tituloInterno">Pergunta 2</p>
+                    <br class="doze">
+                    <input type="text" id="textoPergunta-2" name="textoPergunta-2" placeholder="Texto da pergunta" />
+                    <input type="text" id="corFundo-2" name="corFundo-2" placeholder="Cor de fundo da pergunta" />
+                    <br class="vinteeoito">
+
+                    <p class="tituloInterno">Resposta correta</p>
+                    <br class="vinteequatro">
+                    <input type="text" id="correta-2" name="correta-2" placeholder="Respota correta" />
+                    <input type="text" id="urlCorreta-2" name="urlCorreta-2" placeholder="URL da imagem" />
+                    <br class="vinteeoito">
+
+                    <p class="tituloInterno">Respostas incorretas</p>
+                    <br class="quatorze">
+                    <input type="text" id="incorreta1-2" name="incorreta1-2" placeholder="Resposta incorreta 1" />
+                    <input type="text" id="urlIncorreta1-2" name="urlIncorreta1-2" placeholder="URL da imagem 1" />
+                    <br class="trintaedois">
+                    <input type="text" id="incorreta2-2" name="incorreta2-2" placeholder="Resposta incorreta 2" />
+                    <input type="text" id="urlIncorreta2-2" name="urlIncorreta2-2" placeholder="URL da imagem 2" />
+                    <br class="trintaedois">
+                    <input type="text" id="incorreta3-2" name="incorreta3-2" placeholder="Resposta incorreta 3" />
+                    <input type="text" id="urlIncorreta3-2" name="urlIncorreta3-2" placeholder="URL da imagem 3" />
+                </form>
+            </div>
+        </div>
+
         <br class="vinteequatro">
-        <form class="prompt perguntasMinimizado">
-            <p class="tituloInterno">Pergunta 3</p>
-            <img src="./img/create.png">
-        </form>
-        <button class="confirmacao .pergunta" onclick="confirmarPerguntas()">Prosseguir pra criar níveis</button>
-    </div> -->
 
-
-
-
-
-
-
-
-
-
-
-
-
+        <div class="3">
+            <div class="prompt perguntasMinimizado">
+                <p class="tituloInterno">Pergunta 3</p>
+                <img src="./img/create.png" onclick="abrirPergunta(this)">
+            </div>
+            <div class="pergunta3">
+                <form class="prompt basicoPerguntas 3">
+                    <p class="tituloInterno">Pergunta 3</p>
+                    <br class="doze">
+                    <input type="text" id="textoPergunta-3" name="textoPergunta-3" placeholder="Texto da pergunta" />
+                    <input type="text" id="corFundo-3" name="corFundo-3" placeholder="Cor de fundo da pergunta" />
+                    <br class="vinteeoito">
     
+                    <p class="tituloInterno">Resposta correta</p>
+                    <br class="vinteequatro">
+                    <input type="text" id="correta-3" name="correta-3" placeholder="Respota correta" />
+                    <input type="text" id="urlCorreta-3" name="urlCorreta-3" placeholder="URL da imagem" />
+                    <br class="vinteeoito">
+    
+                    <p class="tituloInterno">Respostas incorretas</p>
+                    <br class="quatorze">
+                    <input type="text" id="incorreta1-3" name="incorreta1-3" placeholder="Resposta incorreta 1" />
+                    <input type="text" id="urlIncorreta1-3" name="urlIncorreta1-3" placeholder="URL da imagem 1" />
+                    <br class="trintaedois">
+                    <input type="text" id="incorreta2-3" name="incorreta2-3" placeholder="Resposta incorreta 2" />
+                    <input type="text" id="urlIncorreta2-3" name="urlIncorreta2-3" placeholder="URL da imagem 2" />
+                    <br class="trintaedois">
+                    <input type="text" id="incorreta3-3" name="incorreta3-3" placeholder="Resposta incorreta 3" />
+                    <input type="text" id="urlIncorreta3-3" name="urlIncorreta3-3" placeholder="URL da imagem 3" />
+                </form>
+            </div>
+        </div>
+
+        <button class="confirmacao pergunta" onclick="confirmarPerguntas()">Prosseguir pra criar níveis</button>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="pagina">
     </div>
 
 
 
 
-  
+
 
 
     <!--Biblioteca ionicons-->

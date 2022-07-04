@@ -1,7 +1,7 @@
 // Variáveis que vão armazenar as informações do quizz fornecidas pelo usuário
 let titulo = "";
 let url = "";
-let perguntas = "";
+let perguntas = 3;
 let niveis = "";
 
 //Função que confere se o valor passado é uma URL válida
@@ -21,12 +21,16 @@ function fazerPerguntas(corpo) {
     for (let i = 1; i < perguntas; i++) {
         corpo.innerHTML += `
         <br class="vinteequatro">
-        <form class="prompt perguntasMinimizado ${i+1}">
-            <p class="tituloInterno">Pergunta ${i+1}</p>
+        <form class="prompt perguntasMinimizado ${i + 1}">
+            <p class="tituloInterno">Pergunta ${i + 1}</p>
             <img src="./img/create.png">
         </form>
         `;
     }
+}
+
+function abrirMenu(menu) {
+
 }
 
 function ehCor() {
@@ -35,6 +39,8 @@ function ehCor() {
 
 // Função que imprime a primeira tela
 function criarComeco() {
+    let pagina = document.querySelector(".pagina");
+    pagina.innerHTML = "";
     let corpo = document.querySelector(".corpo");
     corpo.classList.add("criacao");
     corpo.innerHTML = "";
@@ -90,7 +96,7 @@ function criarPerguntas() {
     corpo.classList.add("perguntas");
     corpo.innerHTML = "";
     corpo.innerHTML += `
-    <form class="prompt basicoPerguntas">
+    <form class="prompt basicoPerguntas 1">
         <p class="tituloInterno">Pergunta 1</p>
         <br class="doze">
         <input type="text" id="textoPergunta" name="textoPergunta" placeholder="Texto da pergunta" />
@@ -118,23 +124,38 @@ function criarPerguntas() {
     fazerPerguntas(corpo);
     corpo.innerHTML += `<button class="confirmacao .pergunta" onclick="confirmarPerguntas()">Prosseguir pra criar níveis</button>`;
 }
-
+// textoPergunta corFundo correta urlCorreta incorreta1 urlIncorreta1
 function validarPerguntas() {
     let valido = true;
-
+    let dados = document.querySelector(`.${i}`);
+    
 }
 
 function confirmarPerguntas() {
-    if (naoEstaVazio()) {
-        let resposta = validarPerguntas();
-        if (resposta === true) {
-            criarNiveis();
-        } else {
-            alert("ERRO: Dados inválidos! Por favor, digite novamente");
+    let resposta = 0;
+    for (let i = 1; i < perguntas+1; i++) {
+        resposta = validarPerguntas(i);
+        switch (resposta) {
+            case 0:
+                alert("ERRO: Preencha todos os dados para continuar!");
+                break;
+            case 1:
+                alert("ERRO: Dados inválidos! Por favor, digite novamente.");
+                break;
+            case 2:
+                criarNiveis();
+                break;
+            default:
+                alert("ERRO: caso desconhecido, favor atualizar a página.");
+                break;
         }
-    } else {
-        alert("ERRO: Preencha todos os dados para continuar!");
     }
+}
+
+function abrirPergunta(menu) {
+    let recolher = document.querySelector('.escondido.perguntasMinimizado');
+    let recolherPai = recolher.parentNode;
+    console.log(recolherPai);
 }
 
 // Função que imprime a segunda tela

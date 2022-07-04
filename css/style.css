@@ -13,6 +13,10 @@ body {
     align-items: center;
 }
 
+.escondido {
+    display: none;
+}
+
 .cabecalho{
 
     position: fixed;
@@ -40,10 +44,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.escondido {
-    display: none;
 }
 
 .criacao {
@@ -125,6 +125,7 @@ body {
     align-items: center;
     top: 28px;
     right: 23px;
+    cursor: pointer;
 }
 
 .doze {
@@ -236,6 +237,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-bottom: 45px;
+    cursor: pointer;
 
 }
 .criarQuizzBotao p{
@@ -290,6 +292,7 @@ body {
     border-radius: 5px;
     position: relative;
     margin-bottom: 19px;
+    cursor: pointer;
 
 }
 .tituloQuizz{
