@@ -125,15 +125,15 @@ function criarPerguntas() {
     corpo.innerHTML += `<button class="confirmacao .pergunta" onclick="confirmarPerguntas()">Prosseguir pra criar níveis</button>`;
 }
 // textoPergunta corFundo correta urlCorreta incorreta1 urlIncorreta1
-function validarPerguntas() {
+function validarPerguntas(i) {
     let valido = true;
-    let dados = document.querySelector(`.${i}`);
+    let dados = document.querySelector(`.prompt.basicoPerguntas.${i}`);
     
 }
 
 function confirmarPerguntas() {
     let resposta = 0;
-    for (let i = 1; i < perguntas+1; i++) {
+    for (let i = 1; i < perguntas + 1; i++) {
         resposta = validarPerguntas(i);
         switch (resposta) {
             case 0:
