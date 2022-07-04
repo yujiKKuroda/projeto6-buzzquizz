@@ -162,6 +162,7 @@ body {
     color: #fff5f4;
     border: none;
     border-radius: 15px;
+    cursor: pointer;
 }
 
 .confirmacao .pergunta {

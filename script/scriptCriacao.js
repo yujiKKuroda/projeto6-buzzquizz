@@ -4,6 +4,17 @@ let url = "";
 let perguntas = 3;
 let niveis = "";
 
+let textoPergunta = "";
+let corFundo = "";
+let correta = "";
+let urlCorreta = "";
+let incorreta1 = "";
+let urlIncorreta1 = "";
+let incorreta2 = "";
+let urlIncorreta2 = "";
+let incorreta3 = "";
+let urlIncorreta3 = "";
+
 //Função que confere se o valor passado é uma URL válida
 function ehURL() {
     let dominio = "http://";
@@ -124,31 +135,28 @@ function criarPerguntas() {
     fazerPerguntas(corpo);
     corpo.innerHTML += `<button class="confirmacao .pergunta" onclick="confirmarPerguntas()">Prosseguir pra criar níveis</button>`;
 }
-// textoPergunta corFundo correta urlCorreta incorreta1 urlIncorreta1
+
 function validarPerguntas(i) {
     let valido = true;
     let dados = document.querySelector(`.prompt.basicoPerguntas.${i}`);
-    
+    console.log(`textoPergunta-${i}`.value);
 }
 
+// textoPergunta corFundo correta urlCorreta incorreta1 urlIncorreta1
 function confirmarPerguntas() {
     let resposta = 0;
     for (let i = 1; i < perguntas + 1; i++) {
-        resposta = validarPerguntas(i);
-        switch (resposta) {
-            case 0:
-                alert("ERRO: Preencha todos os dados para continuar!");
-                break;
-            case 1:
-                alert("ERRO: Dados inválidos! Por favor, digite novamente.");
-                break;
-            case 2:
-                criarNiveis();
-                break;
-            default:
-                alert("ERRO: caso desconhecido, favor atualizar a página.");
-                break;
-        }
+        textoPergunta = `textoPergunta_${i}`;
+        corFundo = `corFundo_${i}`;
+        correta = `correta_${i}`;
+        urlCorreta = `urlCorreta_${i}`;
+        incorreta1 = `incorreta1_${i}`;
+        urlIncorreta1 = `urlIncorreta1_${i}`;
+        incorreta2 = `incorreta2_${i}`;
+        urlIncorreta2 = `urlIncorreta2_${i}`;
+        incorreta3 = `incorreta3_${i}`;
+        urlIncorreta3 = `urlIncorreta3_${i}`;
+        console.log(textoPergunta.value);
     }
 }
 
