@@ -139,14 +139,15 @@ function renderizarDadosDoQuizz(dadosDoQuizz){
         const respostasEmbaralhadas = pergunta.answers;
         respostasEmbaralhadas.sort(comparador);
     
-        respostasEmbaralhadas.forEach(resposta => {
+        respostasEmbaralhadas.forEach((resposta,index )=> {
             respostasString+= `
                 <div 
-                    class="opcaoResposta ${resposta.isCorrectAnswer ? "resposta-certa" : "resposta-errada" }" 
+                    class="opcaoResposta ${resposta.isCorrectAnswer ? "resposta-certa" : "resposta-errada"}"
                     onclick="VerificarResposta(${resposta.isCorrectAnswer}, this, dadosDoQuizz)" 
                 >
                     <img src="${resposta.image}" alt="">
-                    <p>${resposta.text}</p>
+                    <p class="resposta${index}">${resposta.text}</p>
+                    
                 </div>
             `    // Aqui em cima, utilizei ternário, " resposta esta correta (?), adiciono a classe resposta-certa, caso contrario(:) adiciono resposta-errada "
         });
@@ -180,7 +181,7 @@ function VerificarResposta(ehRespostaCerta, respostaClicada, dadosDoQuizz){
     todasAsRespostas.forEach((resposta) => {
 
         if(resposta.innerHTML !== respostaClicada.innerHTML){
-            console.log("ADICIONEI O BAGULHO");
+   
             resposta.classList.add("resposta-nao-selecionada");
         }
     });

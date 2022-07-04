@@ -326,6 +326,9 @@ body {
     height: 227px;
 
 }
+.opcaoResposta span{
+    color: #FAFAFA;
+}
 .topoResponderQuizz p{
     font-family: Roboto;
     font-size: 39px;
